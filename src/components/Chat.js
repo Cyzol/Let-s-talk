@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ChatIcon from "@material-ui/icons/Chat";
 import InfoIcon from "@material-ui/icons/Info";
 import { useSelector } from "react-redux";
-import { selectRoomId } from "./features/appSlice";
+import { selectRoomId } from "../features/appSlice";
 import ChatInput from "./ChatInput";
 function Chat() {
 

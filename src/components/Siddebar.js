@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CreateIcon from "@material-ui/icons/Create";
-import SidebarChannels from "./SidebarChannels";
+import SidebarChannels from "../SidebarChannels";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "./firebase";
+import { db } from "../firebase/firebase";
 
 function Siddebar() {
   const [channels, loading, error] = useCollection(db.collection("rooms"));
