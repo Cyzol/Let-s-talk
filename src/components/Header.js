@@ -4,12 +4,17 @@ import { Avatar } from "@material-ui/core";
 import { AccessTime } from "@material-ui/icons";
 import SearchIcon from "@material-ui/icons/Search";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase/firebase";
 
 function Header() {
+  const [user] = useAuthState(auth);
+
+  const handleSignOut = () => auth.signOut()
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <HeaderAvatar />
+        <HeaderAvatar onClick={handleSignOut} src={user?.photoURL} alt={user.displayName} />
         <AccessTime />
       </HeaderLeft>
       <HeaderMiddle>

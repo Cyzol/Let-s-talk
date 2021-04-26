@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import CreateIcon from "@material-ui/icons/Create";
-import SidebarChannels from "../SidebarChannels";
+import SidebarChannels from "./SidebarChannels";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Siddebar() {
   const [channels, loading, error] = useCollection(db.collection("rooms"));
+  const [user] = useAuthState(auth)
   return (
     <SidebarContainer>
       <SidebarHeader>
@@ -17,7 +19,7 @@ function Siddebar() {
           <h2>Let's talk</h2>
           <h3>
             <FiberManualRecordIcon />
-            Karol C
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <CreateIcon />
@@ -27,14 +29,12 @@ function Siddebar() {
       <hr />
       <SidebarChannels Icon={AddIcon} title={"Add channel"} addChannelOption />
 
-      {channels?.docs.map(channel => (
+      {channels?.docs.map((channel) => (
         <SidebarChannels
           key={channel.id}
           id={channel.id}
           title={channel.data().name}
         />
-
-
       ))}
     </SidebarContainer>
   );
