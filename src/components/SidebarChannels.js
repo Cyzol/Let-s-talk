@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { db } from "./firebase";
+import { db } from "../firebase/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { ContactlessOutlined } from "@material-ui/icons";
 import { useDispatch } from "react-redux";
-import { enterRoom } from "./features/appSlice";
+import { enterRoom } from "../features/appSlice";
 
 function SidebarChannels({ Icon, title, addChannelOption, id }) {
   const dispatch = useDispatch();
